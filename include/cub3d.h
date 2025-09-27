@@ -6,12 +6,19 @@
 /*   By: aakpinar <aakpinar@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 02:40:49 by aakpinar          #+#    #+#             */
-/*   Updated: 2025/09/27 17:51:29 by aakpinar         ###   ########.fr       */
+/*   Updated: 2025/09/27 22:53:51 by aakpinar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 #define CUB3D_H
+
+
+# include "../libs/libft/libft.h"
+# include <stdbool.h>
+# include <fcntl.h>
+# include <unistd.h>
+# include <stdlib.h>
 
 typedef struct s_keys
 {
@@ -113,5 +120,12 @@ typedef struct s_game
 	
 }				t_game;
 //t_game: Oyun genel durum konteyneri; tüm alt sistemleri bir araya toplar.
+
+
+
+bool	valid_extension(char *map);
+bool	validate_map_file_extension(int argc, char **argv);
+
+
 
 #endif
