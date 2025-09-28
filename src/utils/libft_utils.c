@@ -1,31 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   libft_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aakpinar <aakpinar@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/23 05:26:00 by aakpinar          #+#    #+#             */
-/*   Updated: 2025/09/28 13:52:53 by aakpinar         ###   ########.fr       */
+/*   Created: 2025/09/28 13:02:17 by aakpinar          #+#    #+#             */
+/*   Updated: 2025/09/28 13:02:36 by aakpinar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../../include/cub3d.h"
 
-    
-int	main(int argc, char **argv)
+int	ft_isspace(int c)
 {
-	t_game	*game;
-
-	if (!validate_map_arguments(argc, argv))
+	if ((c >= '\t' && c <= '\r') || c == ' ')
 		return (1);
-
-	game = ft_calloc(1, sizeof(t_game));
-	if (!game)
-		return (1);
-
-	if (!check_map_validation(game, argv[1]))
-		return (1);
-	
 	return (0);
 }

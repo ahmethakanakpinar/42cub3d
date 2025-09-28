@@ -1,31 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aakpinar <aakpinar@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/23 05:26:00 by aakpinar          #+#    #+#             */
-/*   Updated: 2025/09/28 13:52:53 by aakpinar         ###   ########.fr       */
+/*   Created: 2024/12/20 23:26:17 by aakpinar          #+#    #+#             */
+/*   Updated: 2025/09/28 12:59:00 by aakpinar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-    
-int	main(int argc, char **argv)
-{
-	t_game	*game;
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 4
+# endif
 
-	if (!validate_map_arguments(argc, argv))
-		return (1);
+# include "../libft/libft.h"
+# include <unistd.h>
+# include <stdlib.h>
 
-	game = ft_calloc(1, sizeof(t_game));
-	if (!game)
-		return (1);
+char	*ft_strjoin_gnl(char *s1, char *s2);
+char	*get_putremain(char *putline);
+char	*get_main_line(char *putline);
+char	*get_read(int fd, char *putline);
+char	*get_next_line(int fd);
 
-	if (!check_map_validation(game, argv[1]))
-		return (1);
-	
-	return (0);
-}
+#endif

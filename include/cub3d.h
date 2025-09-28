@@ -6,7 +6,7 @@
 /*   By: aakpinar <aakpinar@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 02:40:49 by aakpinar          #+#    #+#             */
-/*   Updated: 2025/09/27 22:53:51 by aakpinar         ###   ########.fr       */
+/*   Updated: 2025/09/28 13:49:35 by aakpinar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 
 # include "../libs/libft/libft.h"
+# include "../libs/get_next_line/get_next_line.h"
 # include <stdbool.h>
 # include <fcntl.h>
 # include <unistd.h>
@@ -121,11 +122,13 @@ typedef struct s_game
 }				t_game;
 //t_game: Oyun genel durum konteyneri; tüm alt sistemleri bir araya toplar.
 
+bool	validate_map_arguments(int argc, char **argv);
+void	read_error(t_game *game);
+void	cleanup_game(t_game *game);	
+bool 	check_map_validation(t_game *game, char *path);
 
-
-bool	valid_extension(char *map);
-bool	validate_map_file_extension(int argc, char **argv);
-
+int		ft_isspace(int c);
+bool	print_color_error(int f_count, int c_count);
 
 
 #endif
