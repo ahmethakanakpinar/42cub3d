@@ -9,6 +9,7 @@ LIBFTDIR = libs/libft
 GNLDIR = libs/get_next_line
 
 SRCS = $(SRCDIR)/main.c \
+	   $(SRCDIR)/parsing/arguments.c \
 	   $(SRCDIR)/parsing/validation.c \
 	   $(SRCDIR)/parsing/element_parser.c \
 	   $(SRCDIR)/parsing/file_reader.c \

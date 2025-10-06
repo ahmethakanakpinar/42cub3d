@@ -6,7 +6,7 @@
 /*   By: aakpinar <aakpinar@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 02:40:49 by aakpinar          #+#    #+#             */
-/*   Updated: 2025/09/28 13:49:35 by aakpinar         ###   ########.fr       */
+/*   Updated: 2025/10/07 02:11:46 by aakpinar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,8 @@ bool 	check_map_validation(t_game *game, char *path);
 
 int		ft_isspace(int c);
 bool	print_color_error(int f_count, int c_count);
+bool	print_texture_error(int no, int so, int we, int ea);
+bool	check_element_counts(t_game *game);
 
 
 #endif

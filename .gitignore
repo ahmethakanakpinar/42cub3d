@@ -1,0 +1,13 @@
+.cache/
+.vscode/
+.DS_Store
+*.o
+*.a
+*.so
+*.dylib
+*.dll
+*.lib
+*.exp
+*.def
+*.manifest
+compile_commands.json
