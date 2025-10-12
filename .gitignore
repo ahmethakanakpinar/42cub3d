@@ -11,3 +11,5 @@
 *.def
 *.manifest
 compile_commands.json
+MAPS_README.md
+test_maps.sh

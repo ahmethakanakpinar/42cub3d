@@ -6,7 +6,7 @@
 /*   By: aakpinar <aakpinar@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 02:40:49 by aakpinar          #+#    #+#             */
-/*   Updated: 2025/10/12 03:08:47 by aakpinar         ###   ########.fr       */
+/*   Updated: 2025/10/12 05:12:59 by aakpinar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,15 +123,24 @@ typedef struct s_game
 }				t_game;
 //t_game: Oyun genel durum konteyneri; tüm alt sistemleri bir araya toplar.
 
-bool	validate_map_arguments(int argc, char **argv);
-void	read_error(t_game *game);
-void	cleanup_game(t_game *game);	
-bool 	check_map_validation(t_game *game, char *path);
+bool		validate_map_arguments(int argc, char **argv);
+void		read_error(t_game *game);
+void		cleanup_game(t_game *game);
+bool		check_map_validation(t_game *game, char *path);
 
-int		ft_isspace(int c);
-bool	print_color_error(int f_count, int c_count);
-bool	print_texture_error(int no, int so, int we, int ea);
-bool	check_element_counts(t_game *game);
-bool	init_mlx(t_game *game);
+int			ft_isspace(int c);
+bool		print_color_error(int f_count, int c_count);
+bool		print_texture_error(int no, int so, int we, int ea);
+bool		check_element_counts(t_game *game);
+bool		parse_map(t_game *game);
+int			count_map_lines(t_game *game);
+char		*trim_newline(char *line);
+bool		check_characters(t_game *game);
+bool		validate_map_structure(t_game *game);
+bool		validate_map_walls(t_game *game);
+bool		init_mlx(t_game *game);
+void		init_game(t_game *game);
+void		hook_n_run(t_game *game);
+t_vector	vector_create(double x, double y);
 
 #endif
