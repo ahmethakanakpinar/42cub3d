@@ -7,6 +7,7 @@ SRCDIR = src
 INCDIR = include
 LIBFTDIR = libs/libft
 GNLDIR = libs/get_next_line
+MLXDIR = libs/minilibx-linux
 
 SRCS = $(SRCDIR)/main.c \
 	   $(SRCDIR)/parsing/arguments.c \
@@ -31,11 +32,14 @@ OBJS = $(SRCS:.c=.o)
 
 LIBFT = $(LIBFTDIR)/libft.a
 GNL = $(GNLDIR)/get_next_line.a
+MLX = $(MLXDIR)/libmlx.a
+
+MLXFLAGS = -L$(MLXDIR) -lmlx -lXext -lX11 -lm
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(LIBFT) $(GNL)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -L$(LIBFTDIR) -lft $(GNL)
+$(NAME): $(OBJS) $(LIBFT) $(GNL) $(MLX)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -L$(LIBFTDIR) -lft $(GNL) $(MLXFLAGS)
 
 $(LIBFT):
 	make -C $(LIBFTDIR)
@@ -43,19 +47,39 @@ $(LIBFT):
 $(GNL):
 	make -C $(GNLDIR)
 
+$(MLX):
+	@if [ ! -d "$(MLXDIR)" ]; then \
+		echo "MinilibX not found. Run 'make get' first."; \
+		exit 1; \
+	fi
+	make -C $(MLXDIR)
+
 %.o: %.c
-	$(CC) $(CFLAGS) -I$(INCDIR) -I$(LIBFTDIR) -I$(GNLDIR) -c $< -o $@
+	$(CC) $(CFLAGS) -I$(INCDIR) -I$(LIBFTDIR) -I$(GNLDIR) -I$(MLXDIR) -c $< -o $@
 
 clean:
 	rm -f $(OBJS)
 	make -C $(LIBFTDIR) clean
 	make -C $(GNLDIR) clean
+	@if [ -d "$(MLXDIR)" ]; then make -C $(MLXDIR) clean; fi
 
 fclean: clean
 	rm -f $(NAME)
 	make -C $(LIBFTDIR) fclean
 	make -C $(GNLDIR) fclean
+	@if [ -d "$(MLXDIR)" ]; then rm -rf $(MLXDIR); fi
 
 re: fclean all
 
-.PHONY: all clean fclean re
+get:
+	@if [ ! -d "$(MLXDIR)" ]; then \
+		git clone https://github.com/42Paris/minilibx-linux.git $(MLXDIR); \
+		echo "MinilibX cloned to libs/"; \
+	else \
+		echo "MinilibX already exists in libs/"; \
+	fi
+
+norm:
+	norminette $(SRCDIR) $(INCDIR)
+
+.PHONY: all clean fclean re get norm

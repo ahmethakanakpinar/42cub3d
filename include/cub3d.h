@@ -6,7 +6,7 @@
 /*   By: aakpinar <aakpinar@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 02:40:49 by aakpinar          #+#    #+#             */
-/*   Updated: 2025/10/07 02:11:46 by aakpinar         ###   ########.fr       */
+/*   Updated: 2025/10/12 03:08:47 by aakpinar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 
 # include "../libs/libft/libft.h"
 # include "../libs/get_next_line/get_next_line.h"
+# include "../libs/minilibx-linux/mlx.h"
+# include "../include/constants.h"
 # include <stdbool.h>
 # include <fcntl.h>
 # include <unistd.h>
@@ -103,10 +105,9 @@ typedef struct s_game
 	void			*mlx;
 	void			*win;
     //mlx / win: MLX context ve pencere işaretçileri.
-	void			*img[2];
-	char			*addr[2];
-	int				current_buffer;
-    //img[2] / addr[2] / current_buffer: Çift buffer görüntüler ve bellek adresleri; hangi buffer’ın aktif olduğu.
+	void			*img;
+	char			*addr;
+    //img / addr: buffer görüntüler ve bellek adresleri;
 	int				bits_per_pixel;
 	int				line_length;
 	int				endian;
@@ -131,6 +132,6 @@ int		ft_isspace(int c);
 bool	print_color_error(int f_count, int c_count);
 bool	print_texture_error(int no, int so, int we, int ea);
 bool	check_element_counts(t_game *game);
-
+bool	init_mlx(t_game *game);
 
 #endif
