@@ -6,7 +6,7 @@
 /*   By: aakpinar <aakpinar@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 01:55:00 by aakpinar          #+#    #+#             */
-/*   Updated: 2025/10/12 04:25:22 by aakpinar         ###   ########.fr       */
+/*   Updated: 2025/10/14 15:13:01 by aakpinar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,13 @@ bool	check_map_validation(t_game *game, char *path)
 	game->map_path = path;
 	if (!check_element_counts(game))
 		return (cleanup_game(game), false);
+	if (!parse_colors(game))
+		return (cleanup_game(game), false);
 	if (!parse_map(game))
 		return (cleanup_game(game), false);
 	if (!validate_map_structure(game))
+		return (cleanup_game(game), false);
+	if (!is_map_valid(game))
 		return (cleanup_game(game), false);
 	return (true);
 }

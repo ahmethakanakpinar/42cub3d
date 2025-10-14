@@ -16,7 +16,10 @@ SRCS = $(SRCDIR)/main.c \
 	   $(SRCDIR)/parsing/map_walls.c \
 	   $(SRCDIR)/parsing/map_parser.c \
 	   $(SRCDIR)/parsing/map_counter.c \
+	   $(SRCDIR)/parsing/map_utils.c \
+	   $(SRCDIR)/parsing/flood_fill.c \
 	   $(SRCDIR)/parsing/element_parser.c \
+	   $(SRCDIR)/parsing/color_parser.c \
 	   $(SRCDIR)/parsing/file_reader.c \
 	   $(SRCDIR)/core/init.c \
 	   $(SRCDIR)/core/init_game.c \
