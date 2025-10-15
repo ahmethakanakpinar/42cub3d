@@ -6,7 +6,7 @@
 /*   By: aakpinar <aakpinar@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 02:40:49 by aakpinar          #+#    #+#             */
-/*   Updated: 2025/10/15 03:51:20 by aakpinar         ###   ########.fr       */
+/*   Updated: 2025/10/15 05:07:06 by aakpinar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,12 @@ typedef struct s_vector
 	double	x;
 	double	y;
 }			t_vector;
+
+typedef struct s_vector_int
+{
+	int							x;
+	int							y;
+}								t_vector_int;
 
 typedef struct s_player
 {

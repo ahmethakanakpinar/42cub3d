@@ -6,7 +6,7 @@
 /*   By: aakpinar <aakpinar@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 04:00:00 by aakpinar          #+#    #+#             */
-/*   Updated: 2025/10/13 02:45:08 by aakpinar         ###   ########.fr       */
+/*   Updated: 2025/10/15 05:13:06 by aakpinar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ static bool	is_player_char(char c)
 	return (c == 'N' || c == 'S' || c == 'E' || c == 'W');
 }
 
-static void	save_player_position(t_game *game, int i, int j)
+static void	save_player_position_for_map(t_game *game, int i, int j)
 {
 	game->map.player_start = game->map.grid[i][j];
-	game->map.player_pos.x = (double)j + 0.5;
-	game->map.player_pos.y = (double)i + 0.5;
+	game->map.player_pos.x = j;
+	game->map.player_pos.y = i;
 }
 
 bool	check_characters(t_game *game)
@@ -48,7 +48,7 @@ bool	check_characters(t_game *game)
 					false);
 			if (is_player_char(game->map.grid[i][j]))
 			{
-				save_player_position(game, i, j);
+				save_player_position_for_map(game, i, j);
 				player_count++;
 			}
 		}
