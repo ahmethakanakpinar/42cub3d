@@ -20,6 +20,7 @@ SRCS = $(SRCDIR)/main.c \
 	   $(SRCDIR)/parsing/flood_fill.c \
 	   $(SRCDIR)/parsing/element_parser.c \
 	   $(SRCDIR)/parsing/color_parser.c \
+	   $(SRCDIR)/parsing/texture_parser.c \
 	   $(SRCDIR)/parsing/file_reader.c \
 	   $(SRCDIR)/core/init.c \
 	   $(SRCDIR)/core/init_game.c \
@@ -43,7 +44,13 @@ MLX = $(MLXDIR)/libmlx.a
 
 MLXFLAGS = -L$(MLXDIR) -lmlx -lXext -lX11 -lm
 
-all: $(NAME)
+all: mlx-check $(NAME)
+
+mlx-check:
+	@if [ ! -d "$(MLXDIR)" ]; then \
+		echo "MinilibX not found. Cloning..."; \
+		git clone https://github.com/42Paris/minilibx-linux.git $(MLXDIR); \
+	fi
 
 $(NAME): $(OBJS) $(LIBFT) $(GNL) $(MLX)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -L$(LIBFTDIR) -lft $(GNL) $(MLXFLAGS)
@@ -54,11 +61,7 @@ $(LIBFT):
 $(GNL):
 	make -C $(GNLDIR)
 
-$(MLX):
-	@if [ ! -d "$(MLXDIR)" ]; then \
-		echo "MinilibX not found. Run 'make get' first."; \
-		exit 1; \
-	fi
+$(MLX): mlx-check
 	make -C $(MLXDIR)
 
 %.o: %.c
@@ -89,61 +92,5 @@ get:
 norm:
 	norminette $(SRCDIR) $(INCDIR)
 
-test: $(NAME)
-	@echo "Running map validation tests..."
-	@./test_maps.sh
 
-test-valid: $(NAME)
-	@echo "Testing VALID maps:"
-	@for map in maps/valid/*.cub; do \
-		echo "Testing $$map..."; \
-		./$(NAME) "$$map" || true; \
-	done
-
-test-invalid: $(NAME)
-	@echo "Testing INVALID maps (should fail):"
-	@for map in maps/invalid/*.cub; do \
-		echo "Testing $$map..."; \
-		./$(NAME) "$$map" 2>&1 | head -1 || true; \
-		echo "---"; \
-	done
-
-info:
-	@echo "╔═══════════════════════════════════════════════════╗"
-	@echo "║            CUB3D PROJECT INFO                     ║"
-	@echo "╚═══════════════════════════════════════════════════╝"
-	@echo "Name:           $(NAME)"
-	@echo "CC:             $(CC)"
-	@echo "CFLAGS:         $(CFLAGS)"
-	@echo ""
-	@echo "Source files:   $(words $(SRCS))"
-	@echo "Object files:   $(words $(OBJS))"
-	@echo ""
-	@echo "Parsing files:  $(shell ls -1 $(SRCDIR)/parsing/*.c 2>/dev/null | wc -l)"
-	@echo "Core files:     $(shell ls -1 $(SRCDIR)/core/*.c 2>/dev/null | wc -l)"
-	@echo "Game files:     $(shell ls -1 $(SRCDIR)/game/*.c 2>/dev/null | wc -l)"
-	@echo "Rendering files:$(shell ls -1 $(SRCDIR)/rendering/*.c 2>/dev/null | wc -l)"
-	@echo "Utils files:    $(shell ls -1 $(SRCDIR)/utils/*.c 2>/dev/null | wc -l)"
-	@echo ""
-	@echo "Valid maps:     $(shell ls -1 maps/valid/*.cub 2>/dev/null | wc -l)"
-	@echo "Invalid maps:   $(shell ls -1 maps/invalid/*.cub 2>/dev/null | wc -l)"
-
-help:
-	@echo "╔═══════════════════════════════════════════════════╗"
-	@echo "║            CUB3D MAKEFILE HELP                    ║"
-	@echo "╚═══════════════════════════════════════════════════╝"
-	@echo ""
-	@echo "Available targets:"
-	@echo "  make              - Compile the project"
-	@echo "  make clean        - Remove object files"
-	@echo "  make fclean       - Remove object files and binary"
-	@echo "  make re           - Recompile everything"
-	@echo "  make get          - Clone MinilibX library"
-	@echo "  make norm         - Check norminette compliance"
-	@echo "  make test         - Run all map tests"
-	@echo "  make test-valid   - Test only valid maps"
-	@echo "  make test-invalid - Test only invalid maps"
-	@echo "  make info         - Show project information"
-	@echo "  make help         - Show this help message"
-
-.PHONY: all clean fclean re get norm test test-valid test-invalid info help
+.PHONY: all clean fclean re get norm mlx-check
