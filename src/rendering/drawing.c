@@ -6,7 +6,7 @@
 /*   By: malbayra <malbayra@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 05:28:17 by aakpinar          #+#    #+#             */
-/*   Updated: 2025/10/30 14:42:07 by malbayra         ###   ########.fr       */
+/*   Updated: 2025/10/30 16:53:09 by malbayra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@ void	put_pixel(t_game *game, int x, int y, int color)
 
 	if (x < 0 || x >= WIN_WIDTH || y < 0 || y >= WIN_HEIGHT)
 		return ;
-	dst = game->addr + (y * game->line_length + x
-			* (game->bits_per_pixel / 8));
+	dst = game->addr + (y * game->line_length + x * (game->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
 }
 
@@ -29,8 +28,7 @@ int	get_texture_color(t_texture *texture, int x, int y)
 
 	if (x < 0 || x >= texture->width || y < 0 || y >= texture->height)
 		return (0);
-	dst = texture->addr + (y * texture->line_len + x
-			* (texture->bpp / 8));
+	dst = texture->addr + (y * texture->line_len + x * (texture->bpp / 8));
 	return (*(unsigned int *)dst);
 }
 
@@ -48,7 +46,9 @@ void	draw_vertical_line(t_game *game, int x, t_ray *ray)
 	}
 	while (y < ray->draw_end)
 	{
-		tex_y = (int)ray->tex_pos & (ray->texture->height - 1);
+		tex_y = (int)ray->tex_pos % ray->texture->height;
+		if (tex_y < 0)
+			tex_y += ray->texture->height;
 		ray->tex_pos += ray->tex_step;
 		color = get_texture_color(ray->texture, ray->tex_x, tex_y);
 		put_pixel(game, x, y, color);

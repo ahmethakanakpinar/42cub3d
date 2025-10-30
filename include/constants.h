@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   constants.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aakpinar <aakpinar@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: malbayra <malbayra@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 05:30:02 by aakpinar          #+#    #+#             */
-/*   Updated: 2025/10/07 03:27:19 by aakpinar         ###   ########.fr       */
+/*   Updated: 2025/10/30 16:53:09 by malbayra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,6 @@
 # define WIN_WIDTH 1920
 # define WIN_HEIGHT 1080
 # define WIN_TITLE "cub3D"
-
-# define TEX_WIDTH 64
-# define TEX_HEIGHT 64
 
 # define MOVE_SPEED 0.05
 # define ROT_SPEED 0.03
