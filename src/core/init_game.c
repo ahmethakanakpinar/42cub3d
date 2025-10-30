@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aakpinar <aakpinar@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: malbayra <malbayra@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 03:53:44 by aakpinar          #+#    #+#             */
-/*   Updated: 2025/10/15 05:23:12 by aakpinar         ###   ########.fr       */
+/*   Updated: 2025/10/30 15:21:19 by malbayra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ static void	set_player_direction(t_game *game)
 
 void	init_player(t_game *game)
 {
-	game->p1.pos = vector_create(game->map.player_pos.x + 0.5f, game->map.player_pos.y + 0.5f);
+	game->p1.pos = vector_create(game->map.player_pos.x + 0.5f,
+			game->map.player_pos.y + 0.5f);
 	set_player_direction(game);
 	game->p1.move_speed = MOVE_SPEED;
 	game->p1.rot_speed = ROT_SPEED;

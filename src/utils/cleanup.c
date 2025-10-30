@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleanup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aakpinar <aakpinar@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: malbayra <malbayra@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/28 12:49:41 by aakpinar          #+#    #+#             */
-/*   Updated: 2025/10/15 03:51:15 by aakpinar         ###   ########.fr       */
+/*   Updated: 2025/10/30 15:23:08 by malbayra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,14 @@ void	cleanup_game(t_game *game)
 
 	if (!game)
 		return ;
+	if (game->north.img)
+		mlx_destroy_image(game->mlx, game->north.img);
+	if (game->south.img)
+		mlx_destroy_image(game->mlx, game->south.img);
+	if (game->east.img)
+		mlx_destroy_image(game->mlx, game->east.img);
+	if (game->west.img)
+		mlx_destroy_image(game->mlx, game->west.img);
 	if (game->map.north)
 		free(game->map.north);
 	if (game->map.south)
@@ -35,6 +43,15 @@ void	cleanup_game(t_game *game)
 			i++;
 		}
 		free(game->map.grid);
+	}
+	if (game->img)
+		mlx_destroy_image(game->mlx, game->img);
+	if (game->win)
+		mlx_destroy_window(game->mlx, game->win);
+	if (game->mlx)
+	{
+		mlx_destroy_display(game->mlx);
+		free(game->mlx);
 	}
 	if (game->fd_map != -1)
 		close(game->fd_map);
