@@ -6,7 +6,7 @@
 /*   By: malbayra <malbayra@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 02:40:49 by aakpinar          #+#    #+#             */
-/*   Updated: 2025/11/01 21:49:28 by malbayra         ###   ########.fr       */
+/*   Updated: 2025/11/01 23:08:10 by malbayra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,11 @@ typedef struct s_game
 }					t_game;
 
 void				rotate(t_game *game);
+void				init_ray(t_game *game, t_ray *ray, int x);
+void				set_step(t_game *game, t_ray *ray);
+void				perform_dda(t_game *game, t_ray *ray);
+void				calculate_wall_dist(t_game *game, t_ray *ray);
+void				get_texture(t_game *game, t_ray *ray);
 
 bool				validate_map_arguments(int argc, char **argv);
 void				read_error(t_game *game);

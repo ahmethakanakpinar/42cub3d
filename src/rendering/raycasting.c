@@ -6,13 +6,13 @@
 /*   By: malbayra <malbayra@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 05:28:22 by aakpinar          #+#    #+#             */
-/*   Updated: 2025/11/01 21:53:56 by malbayra         ###   ########.fr       */
+/*   Updated: 2025/11/01 23:07:26 by malbayra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-static void	init_ray(t_game *game, t_ray *ray, int x)
+void	init_ray(t_game *game, t_ray *ray, int x)
 {
 	double	camera_x;
 
@@ -26,7 +26,7 @@ static void	init_ray(t_game *game, t_ray *ray, int x)
 	ray->hit = 0;
 }
 
-static void	set_step(t_game *game, t_ray *ray)
+void	set_step(t_game *game, t_ray *ray)
 {
 	if (ray->ray_dir.x < 0)
 	{
@@ -52,7 +52,7 @@ static void	set_step(t_game *game, t_ray *ray)
 	}
 }
 
-static void	perform_dda(t_game *game, t_ray *ray)
+void	perform_dda(t_game *game, t_ray *ray)
 {
 	while (ray->hit == 0)
 	{
@@ -73,7 +73,7 @@ static void	perform_dda(t_game *game, t_ray *ray)
 	}
 }
 
-static void	calculate_wall_dist(t_game *game, t_ray *ray)
+void	calculate_wall_dist(t_game *game, t_ray *ray)
 {
 	if (ray->side == 0)
 		ray->perp_wall_dist = (ray->map.x - game->p1.pos.x
@@ -90,7 +90,7 @@ static void	calculate_wall_dist(t_game *game, t_ray *ray)
 		ray->draw_end = WIN_HEIGHT - 1;
 }
 
-static void	get_texture(t_game *game, t_ray *ray)
+void	get_texture(t_game *game, t_ray *ray)
 {
 	if (ray->side == 0 && ray->step.x > 0)
 		ray->texture = &game->east;
