@@ -6,7 +6,7 @@
 /*   By: malbayra <malbayra@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 05:30:02 by aakpinar          #+#    #+#             */
-/*   Updated: 2025/10/30 16:53:09 by malbayra         ###   ########.fr       */
+/*   Updated: 2025/11/02 00:46:10 by malbayra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,14 @@
 
 # define FOV 66
 
-# define MINIMAP_SIZE 200
-# define MINIMAP_TILE_SIZE 10
 
 # define KEY_W 119
 # define KEY_A 97
 # define KEY_S 115
 # define KEY_D 100
 # define KEY_ESC 65307
-# define KEY_LEFT 65361
-# define KEY_RIGHT 65363
-# define KEY_SHIFT 65505
+# define KEY_LEFT 65363
+# define KEY_RIGHT 65361
 
 # define PI 3.14159265358979323846
 # define TWO_PI 6.28318530717958647692
