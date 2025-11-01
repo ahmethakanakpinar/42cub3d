@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture_parser.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aakpinar <aakpinar@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: malbayra <malbayra@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 00:00:00 by aakpinar          #+#    #+#             */
-/*   Updated: 2025/10/15 03:42:47 by aakpinar         ###   ########.fr       */
+/*   Updated: 2025/11/02 00:33:40 by malbayra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,24 @@
 static bool	is_valid_texture_file(char *path)
 {
 	int		fd;
-	size_t	len;
+	char	*dot;
+	char	*slash;
+	char	*filename;
 
 	if (!path || !*path)
 		return (false);
-	len = ft_strlen(path);
-	if (len < 4 || ft_strncmp(path + len - 4, ".xpm", 4) != 0)
+	dot = ft_strrchr(path, '.');
+	if (!dot || ft_strncmp(dot, ".xpm", 5) != 0)
 		return (ft_putendl_fd("Error\nTexture must be .xpm file", 2), false);
+	if (dot[4] != '\0')
+		return (ft_putendl_fd("Error\nTexture must be .xpm file", 2), false);
+	slash = ft_strrchr(path, '/');
+	if (slash)
+		filename = slash + 1;
+	else
+		filename = path;
+	if (filename == dot || (filename[0] == '.' && filename + 1 == dot))
+		return (ft_putendl_fd("Error\nInvalid texture filename", 2), false);
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
 		return (ft_putendl_fd("Error\nTexture file not found", 2), false);

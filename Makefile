@@ -21,7 +21,6 @@ SRCS = $(SRCDIR)/main.c \
 	   $(SRCDIR)/parsing/element_parser.c \
 	   $(SRCDIR)/parsing/color_parser.c \
 	   $(SRCDIR)/parsing/texture_parser.c \
-	   $(SRCDIR)/parsing/file_reader.c \
 	   $(SRCDIR)/core/init.c \
 	   $(SRCDIR)/core/init_game.c \
 	   $(SRCDIR)/core/vector.c \
@@ -34,7 +33,6 @@ SRCS = $(SRCDIR)/main.c \
 	   $(SRCDIR)/utils/cleanup.c \
 	   $(SRCDIR)/utils/error.c \
 	   $(SRCDIR)/utils/libft_utils.c \
-	   $(SRCDIR)/utils/math_utils.c
 
 OBJS = $(SRCS:.c=.o)
 
