@@ -6,7 +6,7 @@
 /*   By: malbayra <malbayra@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 05:25:57 by aakpinar          #+#    #+#             */
-/*   Updated: 2025/10/28 01:09:14 by malbayra         ###   ########.fr       */
+/*   Updated: 2025/11/01 21:44:59 by malbayra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,16 @@ bool	init_mlx(t_game *game)
 }
 
 static void	free_textures(t_texture *north, t_texture *south, t_texture *east,
-	t_texture *west)
+		t_texture *west)
 {
-if (north)
-	free(north);
-if (south)
-	free(south);
-if (east)
-	free(east);
-if (west)
-	free(west);
+	if (north)
+		free(north);
+	if (south)
+		free(south);
+	if (east)
+		free(east);
+	if (west)
+		free(west);
 }
 
 void	create_textures(t_game *game)

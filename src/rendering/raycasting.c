@@ -6,7 +6,7 @@
 /*   By: malbayra <malbayra@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 05:28:22 by aakpinar          #+#    #+#             */
-/*   Updated: 2025/10/30 14:45:28 by malbayra         ###   ########.fr       */
+/*   Updated: 2025/11/01 21:53:56 by malbayra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,22 +113,4 @@ static void	get_texture(t_game *game, t_ray *ray)
 	ray->tex_step = 1.0 * ray->texture->height / ray->line_height;
 	ray->tex_pos = (ray->draw_start - WIN_HEIGHT / 2
 			+ ray->line_height / 2) * ray->tex_step;
-}
-
-void	cast_rays(t_game *game)
-{
-	t_ray	ray;
-	int		x;
-
-	x = 0;
-	while (x < WIN_WIDTH)
-	{
-		init_ray(game, &ray, x);
-		set_step(game, &ray);
-		perform_dda(game, &ray);
-		calculate_wall_dist(game, &ray);
-		get_texture(game, &ray);
-		draw_vertical_line(game, x, &ray);
-		x++;
-	}
 }

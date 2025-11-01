@@ -6,7 +6,7 @@
 /*   By: malbayra <malbayra@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 05:28:17 by aakpinar          #+#    #+#             */
-/*   Updated: 2025/10/30 16:53:09 by malbayra         ###   ########.fr       */
+/*   Updated: 2025/11/01 21:53:53 by malbayra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,23 @@ void	draw_vertical_line(t_game *game, int x, t_ray *ray)
 	{
 		put_pixel(game, x, y, game->map.floor_color);
 		y++;
+	}
+}
+
+void	cast_rays(t_game *game)
+{
+	t_ray	ray;
+	int		x;
+
+	x = 0;
+	while (x < WIN_WIDTH)
+	{
+		init_ray(game, &ray, x);
+		set_step(game, &ray);
+		perform_dda(game, &ray);
+		calculate_wall_dist(game, &ray);
+		get_texture(game, &ray);
+		draw_vertical_line(game, x, &ray);
+		x++;
 	}
 }

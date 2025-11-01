@@ -6,7 +6,7 @@
 /*   By: malbayra <malbayra@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 02:40:49 by aakpinar          #+#    #+#             */
-/*   Updated: 2025/10/30 15:19:27 by malbayra         ###   ########.fr       */
+/*   Updated: 2025/11/01 21:49:28 by malbayra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,8 @@ typedef struct s_game
 	t_map			map;
 	t_player		p1;
 }					t_game;
+
+void				rotate(t_game *game);
 
 bool				validate_map_arguments(int argc, char **argv);
 void				read_error(t_game *game);
