@@ -38,6 +38,8 @@ bool	validate_map_arguments(int argc, char **argv)
 bool	check_map_validation(t_game *game, char *path)
 {
 	game->map_path = path;
+	if (!validate_file_content(game))
+		return (cleanup_game(game), false);
 	if (!check_element_counts(game))
 		return (cleanup_game(game), false);
 	if (!parse_colors(game))

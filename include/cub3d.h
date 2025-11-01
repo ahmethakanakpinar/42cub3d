@@ -135,6 +135,7 @@ bool				validate_map_arguments(int argc, char **argv);
 void				read_error(t_game *game);
 void				cleanup_game(t_game *game);
 bool				check_map_validation(t_game *game, char *path);
+bool				validate_file_content(t_game *game);
 
 int					ft_isspace(int c);
 bool				print_color_error(int f_count, int c_count);

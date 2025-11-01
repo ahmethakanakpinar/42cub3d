@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   constants.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: malbayra <malbayra@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: aakpinar <aakpinar@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 05:30:02 by aakpinar          #+#    #+#             */
-/*   Updated: 2025/11/02 00:46:10 by malbayra         ###   ########.fr       */
+/*   Updated: 2025/11/02 02:32:52 by aakpinar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 # define ROT_SPEED 0.03
 
 # define FOV 66
-
 
 # define KEY_W 119
 # define KEY_A 97

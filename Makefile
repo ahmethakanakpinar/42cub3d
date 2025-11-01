@@ -12,6 +12,7 @@ MLXDIR = libs/minilibx-linux
 SRCS = $(SRCDIR)/main.c \
 	   $(SRCDIR)/parsing/arguments.c \
 	   $(SRCDIR)/parsing/validation.c \
+	   $(SRCDIR)/parsing/file_validator.c \
 	   $(SRCDIR)/parsing/map_validation.c \
 	   $(SRCDIR)/parsing/map_walls.c \
 	   $(SRCDIR)/parsing/map_parser.c \
