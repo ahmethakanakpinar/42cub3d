@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   content_validator.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aakpinar <aakpinar@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: malbayra <malbayra@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 02:32:20 by aakpinar          #+#    #+#             */
-/*   Updated: 2025/11/02 02:40:34 by aakpinar         ###   ########.fr       */
+/*   Updated: 2025/11/02 17:08:04 by malbayra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,26 +69,4 @@ static bool	is_valid_line(char *line)
 	if (line[i] && is_valid_identifier(line, i))
 		return (true);
 	return (false);
-}
-
-bool	validate_file_content(t_game *game)
-{
-	char	*line;
-
-	game->fd_map = open(game->map_path, O_RDONLY);
-	if (game->fd_map == -1)
-		return (read_error(game), exit(1), false);
-	line = get_next_line(game->fd_map);
-	while (line)
-	{
-		if (!is_valid_line(line))
-		{
-			ft_putendl_fd("Error\nInvalid content in file", 2);
-			return (free(line), close(game->fd_map), false);
-		}
-		free(line);
-		line = get_next_line(game->fd_map);
-	}
-	close(game->fd_map);
-	return (true);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file_validator.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aakpinar <aakpinar@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: malbayra <malbayra@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 02:32:28 by aakpinar          #+#    #+#             */
-/*   Updated: 2025/11/02 02:32:30 by aakpinar         ###   ########.fr       */
+/*   Updated: 2025/11/02 17:07:44 by malbayra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
