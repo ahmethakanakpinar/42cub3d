@@ -31,7 +31,18 @@ int	count_map_lines(t_game *game)
 		if (found_map)
 		{
 			if (line[0] == '\n' || line[0] == '\0')
-				return (free(line), close(game->fd_map), -1);
+			{
+				free(line);
+				line = get_next_line(game->fd_map);
+				while (line)
+				{
+					if (line[0] != '\n' && line[0] != '\0')
+						return (free(line), close(game->fd_map), -1);
+					free(line);
+					line = get_next_line(game->fd_map);
+				}
+				break ;
+			}
 			count++;
 		}
 		free(line);

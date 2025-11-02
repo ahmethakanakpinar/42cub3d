@@ -180,4 +180,5 @@ int					key_press(int keycode, t_game *game);
 int					key_release(int keycode, t_game *game);
 int					close_window(t_game *game);
 void				update_player(t_game *game);
+void				drain_gnl_buffer(int fd);
 #endif

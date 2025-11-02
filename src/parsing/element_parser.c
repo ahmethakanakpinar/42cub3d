@@ -40,9 +40,11 @@ bool	parse_colors(t_game *game)
 	while (line)
 	{
 		if (!parse_single_color(line, &game->map.floor_color, 'F'))
-			return (free(line), close(game->fd_map), false);
+			return (free(line), drain_gnl_buffer(game->fd_map),
+				close(game->fd_map), false);
 		if (!parse_single_color(line, &game->map.ceiling_color, 'C'))
-			return (free(line), close(game->fd_map), false);
+			return (free(line), drain_gnl_buffer(game->fd_map),
+				close(game->fd_map), false);
 		free(line);
 		line = get_next_line(game->fd_map);
 	}
