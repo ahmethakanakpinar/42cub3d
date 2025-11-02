@@ -174,6 +174,8 @@ void				cast_rays(t_game *game);
 void				update_animation(t_game *game);
 bool				load_texture_frames(t_game *game, t_texture *frames,
 						char *texture_path);
+char				*create_frame_path(char *texture_path, int frame);
+bool				has_frame_number(char *texture_path);
 int					key_press(int keycode, t_game *game);
 int					key_release(int keycode, t_game *game);
 int					close_window(t_game *game);

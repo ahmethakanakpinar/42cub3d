@@ -32,6 +32,7 @@ SRCS = $(SRCDIR)/main.c \
 	   $(SRCDIR)/rendering/raycasting.c \
 	   $(SRCDIR)/rendering/textures.c \
 	   $(SRCDIR)/rendering/texture_animation.c \
+	   $(SRCDIR)/rendering/texture_utils.c \
 	   $(SRCDIR)/utils/cleanup.c \
 	   $(SRCDIR)/utils/error.c \
 	   $(SRCDIR)/utils/libft_utils.c \

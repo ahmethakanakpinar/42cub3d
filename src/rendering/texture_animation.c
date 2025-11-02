@@ -6,55 +6,11 @@
 /*   By: aakpinar <aakpinar@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 03:00:00 by aakpinar          #+#    #+#             */
-/*   Updated: 2025/11/02 03:02:58 by aakpinar         ###   ########.fr       */
+/*   Updated: 2025/11/02 03:05:00 by aakpinar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
-
-static char	*create_frame_path(char *texture_path, int frame)
-{
-	char	*frame_num;
-	char	*frame_str;
-	char	*base;
-	char	*path;
-	char	*temp;
-	size_t	len;
-	size_t	i;
-
-	len = ft_strlen(texture_path);
-	if (len < 4 || ft_strncmp(texture_path + len - 4, ".xpm", 4) != 0)
-		return (NULL);
-	i = len - 5;
-	while (i > 0 && texture_path[i] != '_')
-		i--;
-	if (i > 0 && texture_path[i] == '_' && texture_path[i + 1] >= '0'
-		&& texture_path[i + 1] <= '9')
-		base = ft_substr(texture_path, 0, i + 1);
-	else
-	{
-		base = ft_substr(texture_path, 0, len - 4);
-		temp = ft_strjoin(base, "_");
-		free(base);
-		base = temp;
-	}
-	if (!base)
-		return (NULL);
-	frame_num = ft_itoa(frame);
-	if (frame < 10)
-	{
-		frame_str = ft_strjoin("0", frame_num);
-		free(frame_num);
-	}
-	else
-		frame_str = frame_num;
-	temp = ft_strjoin(base, frame_str);
-	free(base);
-	free(frame_str);
-	path = ft_strjoin(temp, ".xpm");
-	free(temp);
-	return (path);
-}
 
 static bool	load_single_frame(t_game *game, t_texture *texture, char *path)
 {
@@ -92,48 +48,12 @@ static bool	load_all_same_texture(t_game *game, t_texture *frames,
 	return (true);
 }
 
-static bool	has_frame_number(char *texture_path)
-{
-	size_t	len;
-	size_t	i;
-
-	len = ft_strlen(texture_path);
-	if (len < 8)
-		return (false);
-	i = len - 5;
-	while (i > 0 && texture_path[i] != '_')
-		i--;
-	if (i > 0 && texture_path[i] == '_' && texture_path[i + 1] >= '0'
-		&& texture_path[i + 1] <= '9' && texture_path[i + 2] >= '0'
-		&& texture_path[i + 2] <= '9')
-		return (true);
-	return (false);
-}
-
-bool	load_texture_frames(t_game *game, t_texture *frames,
+static bool	load_remaining_frames(t_game *game, t_texture *frames,
 		char *texture_path)
 {
 	int		i;
 	char	*path;
 
-	path = ft_strdup(texture_path);
-	if (!path)
-		return (false);
-	if (!load_single_frame(game, &frames[0], path))
-	{
-		free(path);
-		return (false);
-	}
-	if (!has_frame_number(texture_path))
-		return (load_all_same_texture(game, frames, texture_path));
-	path = create_frame_path(texture_path, 2);
-	if (!path)
-		return (load_all_same_texture(game, frames, texture_path));
-	if (!load_single_frame(game, &frames[1], path))
-	{
-		free(path);
-		return (load_all_same_texture(game, frames, texture_path));
-	}
 	i = 2;
 	while (i < ANIM_FRAMES)
 	{
@@ -148,6 +68,24 @@ bool	load_texture_frames(t_game *game, t_texture *frames,
 		i++;
 	}
 	return (true);
+}
+
+bool	load_texture_frames(t_game *game, t_texture *frames,
+		char *texture_path)
+{
+	char	*path;
+
+	path = ft_strdup(texture_path);
+	if (!path || !load_single_frame(game, &frames[0], path))
+		return (free(path), false);
+	if (!has_frame_number(texture_path))
+		return (load_all_same_texture(game, frames, texture_path));
+	path = create_frame_path(texture_path, 2);
+	if (!path)
+		return (load_all_same_texture(game, frames, texture_path));
+	if (!load_single_frame(game, &frames[1], path))
+		return (free(path), load_all_same_texture(game, frames, texture_path));
+	return (load_remaining_frames(game, frames, texture_path));
 }
 
 void	update_animation(t_game *game)
