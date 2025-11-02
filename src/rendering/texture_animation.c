@@ -70,13 +70,71 @@ static bool	load_single_frame(t_game *game, t_texture *texture, char *path)
 	return (true);
 }
 
+static bool	load_all_same_texture(t_game *game, t_texture *frames,
+		char *first_frame_path)
+{
+	int		i;
+	char	*path;
+
+	i = 1;
+	while (i < ANIM_FRAMES)
+	{
+		path = ft_strdup(first_frame_path);
+		if (!path)
+			return (false);
+		if (!load_single_frame(game, &frames[i], path))
+		{
+			free(path);
+			return (false);
+		}
+		i++;
+	}
+	return (true);
+}
+
+static bool	has_frame_number(char *texture_path)
+{
+	size_t	len;
+	size_t	i;
+
+	len = ft_strlen(texture_path);
+	if (len < 8)
+		return (false);
+	i = len - 5;
+	while (i > 0 && texture_path[i] != '_')
+		i--;
+	if (i > 0 && texture_path[i] == '_' && texture_path[i + 1] >= '0'
+		&& texture_path[i + 1] <= '9' && texture_path[i + 2] >= '0'
+		&& texture_path[i + 2] <= '9')
+		return (true);
+	return (false);
+}
+
 bool	load_texture_frames(t_game *game, t_texture *frames,
 		char *texture_path)
 {
 	int		i;
 	char	*path;
 
-	i = 0;
+	path = ft_strdup(texture_path);
+	if (!path)
+		return (false);
+	if (!load_single_frame(game, &frames[0], path))
+	{
+		free(path);
+		return (false);
+	}
+	if (!has_frame_number(texture_path))
+		return (load_all_same_texture(game, frames, texture_path));
+	path = create_frame_path(texture_path, 2);
+	if (!path)
+		return (load_all_same_texture(game, frames, texture_path));
+	if (!load_single_frame(game, &frames[1], path))
+	{
+		free(path);
+		return (load_all_same_texture(game, frames, texture_path));
+	}
+	i = 2;
 	while (i < ANIM_FRAMES)
 	{
 		path = create_frame_path(texture_path, i + 1);

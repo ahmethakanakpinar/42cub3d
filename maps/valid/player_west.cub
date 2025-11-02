@@ -1,7 +1,8 @@
-NO ./textures/north.xpm
-SO ./textures/south.xpm
-WE ./textures/west.xpm
-EA ./textures/east.xpm
+NO ./sprites/matrix.xpm
+SO ./sprites/matrix.xpm
+WE ./sprites/matrix.xpm
+EA ./sprites/matrix.xpm
+
 
 F 100,50,25
 C 100,150,250
