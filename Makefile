@@ -79,7 +79,7 @@ fclean: clean
 	@if [ -d "$(MLXDIR)" ]; then make -C $(MLXDIR) clean; fi
 	@rm -rf $(MLXDIR)
 
-re: fclean all
+re: fclean get all
 
 get:
 	@if [ ! -d "$(MLXDIR)" ]; then \
