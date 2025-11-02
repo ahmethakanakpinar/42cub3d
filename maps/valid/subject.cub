@@ -1,9 +1,7 @@
-
-
-NO ./sprites/matrix.xpm
-SO ./sprites/matrix.xpm
-WE ./sprites/matrix.xpm
-EA ./sprites/matrix.xpm
+NO ./sprites/matrix_01.xpm
+SO ./sprites/matrix_01.xpm
+WE ./sprites/matrix_01.xpm
+EA ./sprites/matrix_01.xpm
 
 
 F 30,30,30

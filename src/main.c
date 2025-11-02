@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: malbayra <malbayra@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: aakpinar <aakpinar@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 05:26:00 by aakpinar          #+#    #+#             */
-/*   Updated: 2025/10/30 14:44:03 by malbayra         ###   ########.fr       */
+/*   Updated: 2025/11/02 03:02:57 by aakpinar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int	render_frame(t_game *game)
 {
 	update_player(game);
+	update_animation(game);
 	cast_rays(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
 	return (0);

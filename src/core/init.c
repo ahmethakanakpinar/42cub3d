@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: malbayra <malbayra@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: aakpinar <aakpinar@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 05:25:57 by aakpinar          #+#    #+#             */
-/*   Updated: 2025/11/01 21:44:59 by malbayra         ###   ########.fr       */
+/*   Updated: 2025/11/02 03:02:57 by aakpinar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,40 +30,22 @@ bool	init_mlx(t_game *game)
 	return (true);
 }
 
-static void	free_textures(t_texture *north, t_texture *south, t_texture *east,
-		t_texture *west)
-{
-	if (north)
-		free(north);
-	if (south)
-		free(south);
-	if (east)
-		free(east);
-	if (west)
-		free(west);
-}
-
 void	create_textures(t_game *game)
 {
-	t_texture	*north;
-	t_texture	*south;
-	t_texture	*east;
-	t_texture	*west;
-
-	north = texture_create(game, game->map.north);
-	south = texture_create(game, game->map.south);
-	east = texture_create(game, game->map.east);
-	west = texture_create(game, game->map.west);
-	if (!north || !south || !east || !west)
+	game->anim_frame = 0;
+	game->anim_counter = 0;
+	if (!load_texture_frames(game, game->north, game->map.north))
 	{
-		printf("Error\nFailed to load textures\n");
-		free_textures(north, south, east, west);
+		printf("Error\nFailed to load north textures\n");
 		cleanup_game(game);
 		exit(1);
 	}
-	game->north = *north;
-	game->south = *south;
-	game->east = *east;
-	game->west = *west;
-	free_textures(north, south, east, west);
+	if (!load_texture_frames(game, game->south, game->map.south)
+		|| !load_texture_frames(game, game->east, game->map.east)
+		|| !load_texture_frames(game, game->west, game->map.west))
+	{
+		printf("Error\nFailed to load textures\n");
+		cleanup_game(game);
+		exit(1);
+	}
 }

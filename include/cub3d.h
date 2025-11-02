@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: malbayra <malbayra@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: aakpinar <aakpinar@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 02:40:49 by aakpinar          #+#    #+#             */
-/*   Updated: 2025/11/01 23:08:10 by malbayra         ###   ########.fr       */
+/*   Updated: 2025/11/02 03:02:58 by aakpinar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,10 +110,10 @@ typedef struct s_game
 	void			*img;
 	char			*addr;
 
-	t_texture		north;
-	t_texture		south;
-	t_texture		east;
-	t_texture		west;
+	t_texture		north[ANIM_FRAMES];
+	t_texture		south[ANIM_FRAMES];
+	t_texture		east[ANIM_FRAMES];
+	t_texture		west[ANIM_FRAMES];
 
 	int				bits_per_pixel;
 	int				line_length;
@@ -122,6 +122,8 @@ typedef struct s_game
 	char			*map_path;
 	t_map			map;
 	t_player		p1;
+	int				anim_frame;
+	int				anim_counter;
 }					t_game;
 
 void				rotate(t_game *game);
@@ -169,6 +171,9 @@ void				put_pixel(t_game *game, int x, int y, int color);
 int					get_texture_color(t_texture *texture, int x, int y);
 void				draw_vertical_line(t_game *game, int x, t_ray *ray);
 void				cast_rays(t_game *game);
+void				update_animation(t_game *game);
+bool				load_texture_frames(t_game *game, t_texture *frames,
+						char *texture_path);
 int					key_press(int keycode, t_game *game);
 int					key_release(int keycode, t_game *game);
 int					close_window(t_game *game);

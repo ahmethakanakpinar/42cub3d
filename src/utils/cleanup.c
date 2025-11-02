@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleanup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: malbayra <malbayra@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: aakpinar <aakpinar@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/28 12:49:41 by aakpinar          #+#    #+#             */
-/*   Updated: 2025/11/01 21:44:38 by malbayra         ###   ########.fr       */
+/*   Updated: 2025/11/02 03:02:57 by aakpinar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,18 +39,29 @@ static void	free_map_grid(t_game *game)
 	free(game->map.grid);
 }
 
+static void	free_texture_frames(t_game *game, t_texture *frames)
+{
+	int	i;
+
+	i = 0;
+	while (i < ANIM_FRAMES)
+	{
+		if (frames[i].img)
+			mlx_destroy_image(game->mlx, frames[i].img);
+		if (frames[i].path)
+			free(frames[i].path);
+		i++;
+	}
+}
+
 void	cleanup_game(t_game *game)
 {
 	if (!game)
 		return ;
-	if (game->north.img)
-		mlx_destroy_image(game->mlx, game->north.img);
-	if (game->south.img)
-		mlx_destroy_image(game->mlx, game->south.img);
-	if (game->east.img)
-		mlx_destroy_image(game->mlx, game->east.img);
-	if (game->west.img)
-		mlx_destroy_image(game->mlx, game->west.img);
+	free_texture_frames(game, game->north);
+	free_texture_frames(game, game->south);
+	free_texture_frames(game, game->east);
+	free_texture_frames(game, game->west);
 	free_map_textures(game);
 	free_map_grid(game);
 	if (game->img)

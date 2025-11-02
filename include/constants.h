@@ -6,7 +6,7 @@
 /*   By: aakpinar <aakpinar@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 05:30:02 by aakpinar          #+#    #+#             */
-/*   Updated: 2025/11/02 02:32:52 by aakpinar         ###   ########.fr       */
+/*   Updated: 2025/11/02 03:19:02 by aakpinar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,8 @@
 
 # define FRONT_BUFFER 0
 # define BACK_BUFFER 1
+
+# define ANIM_FRAMES 4
+# define ANIM_SPEED 10
 
 #endif

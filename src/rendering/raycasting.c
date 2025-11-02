@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: malbayra <malbayra@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: aakpinar <aakpinar@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 05:28:22 by aakpinar          #+#    #+#             */
-/*   Updated: 2025/11/01 23:07:26 by malbayra         ###   ########.fr       */
+/*   Updated: 2025/11/02 03:27:24 by aakpinar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,13 +93,13 @@ void	calculate_wall_dist(t_game *game, t_ray *ray)
 void	get_texture(t_game *game, t_ray *ray)
 {
 	if (ray->side == 0 && ray->step.x > 0)
-		ray->texture = &game->east;
+		ray->texture = &game->east[game->anim_frame];
 	else if (ray->side == 0 && ray->step.x < 0)
-		ray->texture = &game->west;
+		ray->texture = &game->west[game->anim_frame];
 	else if (ray->side == 1 && ray->step.y > 0)
-		ray->texture = &game->south;
+		ray->texture = &game->south[game->anim_frame];
 	else
-		ray->texture = &game->north;
+		ray->texture = &game->north[game->anim_frame];
 	if (ray->side == 0)
 		ray->wall_x = game->p1.pos.y + ray->perp_wall_dist * ray->ray_dir.y;
 	else
