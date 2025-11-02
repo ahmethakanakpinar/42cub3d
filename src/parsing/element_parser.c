@@ -6,7 +6,7 @@
 /*   By: aakpinar <aakpinar@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 05:26:42 by aakpinar          #+#    #+#             */
-/*   Updated: 2025/10/13 03:33:54 by aakpinar         ###   ########.fr       */
+/*   Updated: 2025/11/02 07:12:35 by aakpinar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,10 @@ bool	parse_colors(t_game *game)
 	while (line)
 	{
 		if (!parse_single_color(line, &game->map.floor_color, 'F'))
-			return (free(line), drain_gnl_buffer(game->fd_map),
+			return (free(line),
 				close(game->fd_map), false);
 		if (!parse_single_color(line, &game->map.ceiling_color, 'C'))
-			return (free(line), drain_gnl_buffer(game->fd_map),
+			return (free(line),
 				close(game->fd_map), false);
 		free(line);
 		line = get_next_line(game->fd_map);

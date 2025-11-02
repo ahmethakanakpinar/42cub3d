@@ -6,7 +6,7 @@
 /*   By: aakpinar <aakpinar@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 02:40:49 by aakpinar          #+#    #+#             */
-/*   Updated: 2025/11/02 03:02:58 by aakpinar         ###   ########.fr       */
+/*   Updated: 2025/11/02 07:12:03 by aakpinar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,5 +180,4 @@ int					key_press(int keycode, t_game *game);
 int					key_release(int keycode, t_game *game);
 int					close_window(t_game *game);
 void				update_player(t_game *game);
-void				drain_gnl_buffer(int fd);
 #endif

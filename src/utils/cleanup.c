@@ -6,7 +6,7 @@
 /*   By: aakpinar <aakpinar@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/28 12:49:41 by aakpinar          #+#    #+#             */
-/*   Updated: 2025/11/02 03:02:57 by aakpinar         ###   ########.fr       */
+/*   Updated: 2025/11/02 07:14:39 by aakpinar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,6 @@ void	cleanup_game(t_game *game)
 	}
 	if (game->fd_map != -1)
 		close(game->fd_map);
+	get_next_line(-1);
 	free(game);
 }

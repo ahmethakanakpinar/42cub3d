@@ -6,7 +6,7 @@
 /*   By: aakpinar <aakpinar@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 23:26:25 by aakpinar          #+#    #+#             */
-/*   Updated: 2025/09/28 12:58:23 by aakpinar         ###   ########.fr       */
+/*   Updated: 2025/11/02 07:13:19 by aakpinar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,12 @@ char	*get_next_line(int fd)
 	char		*mainline;
 	static char	*putline;
 
+	if (fd == -1)
+	{
+		free(putline);
+		putline = NULL;
+		return (NULL);
+	}
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	putline = get_read(fd, putline);
