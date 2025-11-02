@@ -44,53 +44,48 @@ MLX = $(MLXDIR)/libmlx.a
 
 MLXFLAGS = -L$(MLXDIR) -lmlx -lXext -lX11 -lm
 
-all: mlx-check $(NAME)
-
-mlx-check:
-	@if [ ! -d "$(MLXDIR)" ]; then \
-		echo "MinilibX not found. Cloning..."; \
-		git clone https://github.com/42Paris/minilibx-linux.git $(MLXDIR); \
-	fi
+all: $(NAME)
 
 $(NAME): $(OBJS) $(LIBFT) $(GNL) $(MLX)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -L$(LIBFTDIR) -lft $(GNL) $(MLXFLAGS)
 
 $(LIBFT):
-	make -C $(LIBFTDIR)
+	@make -C $(LIBFTDIR)
 
 $(GNL):
-	make -C $(GNLDIR)
+	@make -C $(GNLDIR)
 
-$(MLX): mlx-check
-	make -C $(MLXDIR)
+$(MLX):
+	@if [ ! -d "$(MLXDIR)" ]; then \
+		echo "MinilibX not found. Run 'make get' first."; \
+		exit 1; \
+	fi
+	@make -C $(MLXDIR)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -I$(INCDIR) -I$(LIBFTDIR) -I$(GNLDIR) -I$(MLXDIR) -c $< -o $@
 
 clean:
-	rm -f $(OBJS)
-	make -C $(LIBFTDIR) clean
-	make -C $(GNLDIR) clean
+	@rm -f $(OBJS)
+	@make -C $(LIBFTDIR) clean
+	@make -C $(GNLDIR) clean
 	@if [ -d "$(MLXDIR)" ]; then make -C $(MLXDIR) clean; fi
 
 fclean: clean
-	rm -f $(NAME)
-	make -C $(LIBFTDIR) fclean
-	make -C $(GNLDIR) fclean
-	@if [ -d "$(MLXDIR)" ]; then rm -rf $(MLXDIR); fi
+	@rm -f $(NAME)
+	@make -C $(LIBFTDIR) fclean
+	@make -C $(GNLDIR) fclean
+	@if [ -d "$(MLXDIR)" ]; then make -C $(MLXDIR) clean; fi
+	@rm -rf $(MLXDIR)
 
 re: fclean all
 
 get:
 	@if [ ! -d "$(MLXDIR)" ]; then \
 		git clone https://github.com/42Paris/minilibx-linux.git $(MLXDIR); \
-		echo "MinilibX cloned to libs/"; \
+		echo "MinilibX cloned successfully."; \
 	else \
-		echo "MinilibX already exists in libs/"; \
+		echo "MinilibX already exists."; \
 	fi
 
-norm:
-	norminette $(SRCDIR) $(INCDIR)
-
-
-.PHONY: all clean fclean re get norm mlx-check
+.PHONY: all clean fclean re get
