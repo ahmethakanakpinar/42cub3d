@@ -29,7 +29,7 @@ bool	validate_map_arguments(int argc, char **argv)
 		filename = slash + 1;
 	else
 		filename = argv[1];
-	if (filename == dot || (filename[0] == '.' && filename + 1 == dot))
+	if (filename == dot)
 		return (printf("Error: Invalid filename. File must have a name\n"),
 			false);
 	return (true);

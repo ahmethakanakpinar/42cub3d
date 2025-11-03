@@ -30,9 +30,11 @@ static int	check_remaining_lines(t_game *game, char *line)
 	return (0);
 }
 
-static int	count_map_liness(t_game *game, char *line, int count,
-		bool found_map)
+static int	count_map_liness(t_game *game, char *line, int count)
 {
+	bool	found_map;
+
+	found_map = false;
 	while (line)
 	{
 		if (!found_map && (line[0] == '1' || line[0] == ' '))
@@ -57,15 +59,13 @@ int	count_map_lines(t_game *game)
 {
 	char	*line;
 	int		count;
-	bool	found_map;
 
 	count = 0;
-	found_map = false;
 	game->fd_map = open(game->map_path, O_RDONLY);
 	if (game->fd_map == -1)
 		return (0);
 	line = get_next_line(game->fd_map);
-	count = count_map_liness(game, line, count, found_map);
+	count = count_map_liness(game, line, count);
 	close(game->fd_map);
 	return (count);
 }

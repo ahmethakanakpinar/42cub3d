@@ -31,7 +31,7 @@ static bool	is_valid_texture_file(char *path)
 		filename = slash + 1;
 	else
 		filename = path;
-	if (filename == dot || (filename[0] == '.' && filename + 1 == dot))
+	if (filename == dot)
 		return (ft_putendl_fd("Error\nInvalid texture filename", 2), false);
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
