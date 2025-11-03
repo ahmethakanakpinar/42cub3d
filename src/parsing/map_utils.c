@@ -26,9 +26,7 @@ char	**copy_map(t_game *game)
 		temp[i] = ft_strdup(game->map.grid[i]);
 		if (!temp[i])
 		{
-			while (--i >= 0)
-				free(temp[i]);
-			free(temp);
+			free_map_copy(temp, i);
 			return (NULL);
 		}
 		i++;
@@ -40,6 +38,8 @@ void	free_map_copy(char **temp, int height)
 {
 	int	i;
 
+	if (!temp)
+        return;
 	i = -1;
 	while (++i < height)
 		free(temp[i]);
