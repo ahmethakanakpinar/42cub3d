@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color_parser.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aakpinar <aakpinar@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: malbayra <malbayra@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 03:25:00 by aakpinar          #+#    #+#             */
-/*   Updated: 2025/11/02 06:45:20 by aakpinar         ###   ########.fr       */
+/*   Updated: 2025/11/09 01:41:17 by malbayra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,26 +29,35 @@ char	*skip_spaces(char *str)
 	return (str);
 }
 
+static int	get_digit_count(char *ptr)
+{
+	int	count;
+
+	count = 0;
+	while (ptr[count] && ft_isdigit(ptr[count]))
+		count++;
+	return (count);
+}
+
 bool	parse_rgb_values(char *line, int *r, int *g, int *b)
 {
 	char	*ptr;
 
-	ptr = skip_spaces(line);
-	*r = ft_atoi(ptr);
-	while (*ptr && ft_isdigit(*ptr))
-		ptr++;
+	ptr = line;
+	if (!parse_single_value(&ptr, r))
+		return (false);
+	ptr = skip_spaces(ptr);
 	if (*ptr != ',')
 		return (ft_putendl_fd("Error\nInvalid RGB format", 2), false);
 	ptr++;
-	*g = ft_atoi(ptr);
-	while (*ptr && ft_isdigit(*ptr))
-		ptr++;
+	if (!parse_single_value(&ptr, g))
+		return (false);
+	ptr = skip_spaces(ptr);
 	if (*ptr != ',')
 		return (ft_putendl_fd("Error\nInvalid RGB format", 2), false);
 	ptr++;
-	*b = ft_atoi(ptr);
-	while (*ptr && ft_isdigit(*ptr))
-		ptr++;
+	if (!parse_single_value(&ptr, b))
+		return (false);
 	ptr = skip_spaces(ptr);
 	if (*ptr != '\0' && *ptr != '\n')
 		return (ft_putendl_fd("Error\nInvalid RGB format", 2), false);
