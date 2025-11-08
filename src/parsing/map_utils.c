@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aakpinar <aakpinar@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: malbayra <malbayra@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 03:00:00 by aakpinar          #+#    #+#             */
-/*   Updated: 2025/10/13 03:03:36 by aakpinar         ###   ########.fr       */
+/*   Updated: 2025/11/08 19:45:02 by malbayra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	free_map_copy(char **temp, int height)
 	int	i;
 
 	if (!temp)
-        return;
+		return ;
 	i = -1;
 	while (++i < height)
 		free(temp[i]);
