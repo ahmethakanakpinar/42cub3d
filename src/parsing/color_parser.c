@@ -6,7 +6,7 @@
 /*   By: malbayra <malbayra@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 03:25:00 by aakpinar          #+#    #+#             */
-/*   Updated: 2025/11/09 01:41:17 by malbayra         ###   ########.fr       */
+/*   Updated: 2025/11/09 09:03:29 by malbayra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char	*skip_spaces(char *str)
 	return (str);
 }
 
-static int	get_digit_count(char *ptr)
+int	get_digit_count(char *ptr)
 {
 	int	count;
 
