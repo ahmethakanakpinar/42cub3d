@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   constants.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aakpinar <aakpinar@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: malbayra <malbayra@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 05:30:02 by aakpinar          #+#    #+#             */
-/*   Updated: 2025/11/02 03:19:02 by aakpinar         ###   ########.fr       */
+/*   Updated: 2025/11/09 11:27:19 by malbayra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@
 # define MOVE_SPEED 0.05
 # define ROT_SPEED 0.03
 
-# define FOV 66
-
 # define KEY_W 119
 # define KEY_A 97
 # define KEY_S 115
@@ -30,16 +28,6 @@
 # define KEY_LEFT 65363
 # define KEY_RIGHT 65361
 
-# define PI 3.14159265358979323846
-# define TWO_PI 6.28318530717958647692
-
-# define COLOR_RED 0xFF0000
-# define COLOR_GREEN 0x00FF00
-# define COLOR_BLUE 0x0000FF
-# define COLOR_WHITE 0xFFFFFF
-# define COLOR_BLACK 0x000000
-# define COLOR_GRAY 0x808080
-
 # define WALL '1'
 # define FLOOR '0'
 # define SPACE ' '
@@ -47,9 +35,6 @@
 # define SOUTH 'S'
 # define EAST 'E'
 # define WEST 'W'
-
-# define FRONT_BUFFER 0
-# define BACK_BUFFER 1
 
 # define ANIM_FRAMES 4
 # define ANIM_SPEED 10
