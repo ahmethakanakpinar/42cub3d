@@ -12,29 +12,13 @@
 
 #include "../../include/cub3d.h"
 
-static int	check_remaining_lines(t_game *game, char *line)
-{
-	free(line);
-	line = get_next_line(game->fd_map);
-	while (line)
-	{
-		if (line[0] != '\n' && line[0] != '\0')
-		{
-			free(line);
-			close(game->fd_map);
-			return (-1);
-		}
-		free(line);
-		line = get_next_line(game->fd_map);
-	}
-	return (0);
-}
-
 static int	count_map_liness(t_game *game, char *line, int count)
 {
 	bool	found_map;
+	int		empty_lines;
 
 	found_map = false;
+	empty_lines = 0;
 	while (line)
 	{
 		if (!found_map && (line[0] == '1' || line[0] == ' '))
@@ -42,12 +26,12 @@ static int	count_map_liness(t_game *game, char *line, int count)
 		if (found_map)
 		{
 			if (line[0] == '\n' || line[0] == '\0')
+				empty_lines++;
+			else
 			{
-				if (check_remaining_lines(game, line) == -1)
-					return (-1);
-				break ;
+				count += empty_lines + 1;
+				empty_lines = 0;
 			}
-			count++;
 		}
 		free(line);
 		line = get_next_line(game->fd_map);
