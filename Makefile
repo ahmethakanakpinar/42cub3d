@@ -30,7 +30,6 @@ SRCS = $(SRCDIR)/main.c \
 	   $(SRCDIR)/game/player.c \
 	   $(SRCDIR)/rendering/drawing.c \
 	   $(SRCDIR)/rendering/raycasting.c \
-	   $(SRCDIR)/rendering/textures.c \
 	   $(SRCDIR)/rendering/texture_animation.c \
 	   $(SRCDIR)/rendering/texture_utils.c \
 	   $(SRCDIR)/utils/cleanup.c \
