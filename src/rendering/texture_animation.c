@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture_animation.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aakpinar <aakpinar@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: malbayra <malbayra@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 03:00:00 by aakpinar          #+#    #+#             */
-/*   Updated: 2025/11/02 03:05:00 by aakpinar         ###   ########.fr       */
+/*   Updated: 2025/11/22 04:04:50 by malbayra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static bool	load_single_frame(t_game *game, t_texture *texture, char *path)
 {
-	texture->img = mlx_xpm_file_to_image(game->mlx, path,
-			&texture->width, &texture->height);
+	texture->img = mlx_xpm_file_to_image(game->mlx, path, &texture->width,
+			&texture->height);
 	if (!texture->img)
 		return (false);
 	texture->addr = mlx_get_data_addr(texture->img, &texture->bpp,
@@ -70,8 +70,7 @@ static bool	load_remaining_frames(t_game *game, t_texture *frames,
 	return (true);
 }
 
-bool	load_texture_frames(t_game *game, t_texture *frames,
-		char *texture_path)
+bool	load_texture_frames(t_game *game, t_texture *frames, char *texture_path)
 {
 	char	*path;
 

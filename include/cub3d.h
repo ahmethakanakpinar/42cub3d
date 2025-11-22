@@ -6,7 +6,7 @@
 /*   By: malbayra <malbayra@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 02:40:49 by aakpinar          #+#    #+#             */
-/*   Updated: 2025/11/09 09:03:39 by malbayra         ###   ########.fr       */
+/*   Updated: 2025/11/22 04:04:28 by malbayra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,7 +166,6 @@ bool				flood_fill(char **map, int height, int width,
 char				**copy_map(t_game *game);
 void				free_map_copy(char **temp, int height);
 void				create_textures(t_game *game);
-t_texture			*texture_create(t_game *game, char *texture_path);
 void				put_pixel(t_game *game, int x, int y, int color);
 int					get_texture_color(t_texture *texture, int x, int y);
 void				draw_vertical_line(t_game *game, int x, t_ray *ray);
