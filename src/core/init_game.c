@@ -6,7 +6,7 @@
 /*   By: malbayra <malbayra@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 03:53:44 by aakpinar          #+#    #+#             */
-/*   Updated: 2025/10/30 15:21:19 by malbayra         ###   ########.fr       */
+/*   Updated: 2025/11/27 19:31:09 by malbayra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	set_player_direction(t_game *game)
 	else if (game->map.player_start == 'S')
 	{
 		game->p1.dir = vector_create(0, 1);
-		game->p1.plane = vector_create(-0.66, 0);
+		game->p1.plane = vector_create(0.66, 0);
 	}
 	else if (game->map.player_start == 'E')
 	{
@@ -32,7 +32,7 @@ static void	set_player_direction(t_game *game)
 	else if (game->map.player_start == 'W')
 	{
 		game->p1.dir = vector_create(-1, 0);
-		game->p1.plane = vector_create(0, -0.66);
+		game->p1.plane = vector_create(0, 0.66);
 	}
 }
 
